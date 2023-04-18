@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title><%=title%></title>
+        <link rel="stylesheet" href="css/background.css" type="text/css">
+        <link rel="stylesheet" href="css/form.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+        
+    </head>
+    <body>
+        <div class="container">
+        <h1>
+        <i class="fa fa-list-alt" aria-hidden="true"> To-Do List </i></h1>
+        <form action="/create-task" method="POST">
+            <label class="">
+                Description
+            </label><br>
+            <input aria-describedby="description" type="text" name="name" placeholder="What do you need to do?" required class="inputFields"><br><br>
+            <select name="category" required>
+                <option>Personal</option>
+                <option>School</option>
+                <option>Work</option>
+                <option>Cleaning</option>
+                <option>Other</option>
+            </select>
+            <input type="date" name="date" required id="date_style">
+            <button type="submit" id="join-btn" class="fa fa-plus" aria-hidden="true">
+                ADD TASK
+            </button>
+        </form>
+            
+        <form action="/delete-task" method="get">
+        <div>
+            <ul >
+                <% for (let i of task_list) {%>
+                    <li >
+                        <div >
+                            <table>
+                                <tbody>
+                                    <tr id="tasks">
+                                        <td ><input type="checkbox" name="<%= i.id %>" ></td>
+                                        <td></td><td class="fa-solid fa-pen">&nbsp;</td>
+                                        <td style="width:700px"><%= i.name %></td><td>&nbsp;</td>
+                                        <td ><span id="category"><%= i.category %></span></td><td>&nbsp;</td>
+                                        <td ><span id="date"><%= i.date %></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li><br>
+                <% }%>
+                <button type="submit" id="delete-btn" class="fa fa-plus" aria-hidden="true">
+                    DELETE TASK
+                </button><br><br>
+            </ul>
+        </form>
+        </div>
+        </div>
+    <script src="https://kit.fontawesome.com/6a380c024c.js" crossorigin="anonymous"></script>
+    </body>
+</html>
